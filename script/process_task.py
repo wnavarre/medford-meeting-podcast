@@ -6,7 +6,7 @@ import os
 
 def new_md():
     return {
-        'collection': 'city_of_medford_ma_meetings',
+        'collection': 'opensource_audio',
         'mediatype': 'audio',
         'coverage': 'US-MA'
     }
@@ -42,21 +42,30 @@ def process_meeting(meeting):
     os.chdir(os.getenv("HOME"))
     src_url = meeting["SRC"]
     video_tmpfile = "videofile." + extension(src_url)
-    audio_tmpfile = "audiofile.mp3"
+    audio_tmpfile = "audiofile.m4a"
     my_md = md(meeting)
     my_id = identifier(my_md, meeting)
     meeting["URL"] = "https://archive.org/download/{}/{}".format(my_id, audio_tmpfile)
-    args = ["curl", "-o", video_tmpfile, src_url]
+    if 1:
+        args = ["echo"]
+    else:
+        args = ["curl", "-o", video_tmpfile, src_url]
     result = subprocess.run(args)
     if result.returncode:
         print(" ".join(args))
         print("CURL FAILED!!!!!!!!!\n\n\n\n")
         raise AssertionError("curl")
     result = subprocess.run(["ffmpeg",
+                             "-y",
                              "-i", video_tmpfile,
                              "-vn",
                              "-acodec", "copy",
                              audio_tmpfile])
     if result.returncode: raise AssertionError("ffmpeg")
-    upload(my_id, { audio_tmpfile : audio_tmpfile }, metadata=my_md)
+    filelist = { audio_tmpfile : audio_tmpfile }
+    print("Uploading...")
+    print("\t" + repr(my_id))
+    print("\t" + repr(filelist))
+    print("\tmetadata=" + repr(my_md))
+    upload(my_id, filelist, metadata=my_md)
 
