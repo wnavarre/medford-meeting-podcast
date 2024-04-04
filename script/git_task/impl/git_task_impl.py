@@ -36,7 +36,7 @@ def done_task_local_fp(task, old_tasks_file, new_tasks_file, job_colname):
     reader = TSVFileReader(old_tasks_file)
     reader.print_headings(new_tasks_file)
     for entry in reader:
-        if entry[job_colname] == task[job_colname]:
+        if entry.get(job_colname) == task[job_colname]:
             task = task.update_other(entry)
             task[job_colname] = "DONE-" + task[job_colname][5:]
             task.print_entry(new_tasks_file)
@@ -50,7 +50,7 @@ def abandon_task_local_fp(task, old_tasks_file, new_tasks_file, job_colname):
     reader = TSVFileReader(old_tasks_file)
     reader.print_headings(new_tasks_file)
     for entry in reader:
-        if entry[job_colname] == task[job_colname]:
+        if entry.get(job_colname) == task[job_colname]:
             task = task.update_other(entry)
             task[job_colname] = ""
             task.print_entry(new_tasks_file)
