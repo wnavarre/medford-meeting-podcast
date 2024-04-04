@@ -38,18 +38,23 @@ def extension(st):
             raise ValueError(c)
     return ext
 
+def delete_if_exists(path):
+    try:
+        os.remove(path)
+    except OSError:
+        pass
+
 def process_meeting(meeting):
     os.chdir(os.getenv("HOME"))
     src_url = meeting["SRC"]
     video_tmpfile = "videofile." + extension(src_url)
     audio_tmpfile = "audiofile.m4a"
+    if delete_if_exists(video_tmpfile)
+    if delete_if_exists(audio_tmpfile)
     my_md = md(meeting)
     my_id = identifier(my_md, meeting)
     meeting["URL"] = "https://archive.org/download/{}/{}".format(my_id, audio_tmpfile)
-    if 1:
-        args = ["echo"]
-    else:
-        args = ["curl", "-o", video_tmpfile, src_url]
+    args = ["curl", "-o", video_tmpfile, src_url]
     result = subprocess.run(args)
     if result.returncode:
         print(" ".join(args))

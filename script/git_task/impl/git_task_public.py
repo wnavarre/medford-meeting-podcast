@@ -15,6 +15,12 @@ class TaskProject:
         self._tasks_filename = tasks_file
         self._job_colname = job_colname
     @in_git_workdir
+    def visit_git_workdir(self, f): return f()
+    @in_git_workdir
+    def all_tasks(self):
+        with open(self._tasks_filename, "r") as old_tasks:
+            return list_tasks_fp(old_tasks)
+    @in_git_workdir
     def grab_task(self, *, fail_ungracefully=False, startup_function=None):
         tasks_file = self._tasks_filename
         new_file_name = tasks_file + ".NEW"

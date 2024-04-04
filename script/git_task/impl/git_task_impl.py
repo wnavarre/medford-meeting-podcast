@@ -16,6 +16,9 @@ def in_git_workdir(f):
         return out
     return wrapper
 
+def list_tasks_fp(tasks_file):
+    return list(TSVFileReader(tasks_file))
+
 def grab_task_local_fp(old_tasks_file, new_tasks_file, job_colname):
     out = None
     reader = TSVFileReader(old_tasks_file)
