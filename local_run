@@ -5,7 +5,7 @@ docker build -t "podcast-stuff" .
 docker run \
        --mount readonly,type=bind,source=$HERE/../podcast-stuff-secrets/internetarchive,target=/root/.config/internetarchive \
        --mount readonly,type=bind,source=$HERE/script,target=/root/src \
-       --mount type=bind,source=$HERE/../test.git,target=/root/test.git \
+       --mount readonly,type=bind,source=$HOME/.ssh,target=/root/.ssh \
        -it \
        podcast-stuff \
        bash
