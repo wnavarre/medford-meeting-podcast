@@ -21,5 +21,8 @@ def rss(entries, out):
         out.write('<item>\n')
         out.write('<title>{} {}</title>\n'.format(entry["SLUG"], entry["DATE"]))
         out.write('<guid isPermaLink="false">{}</guid>\n'.format(entry["JOB"]))
-        out.write('<enclosure type="audio/m4a" url="{}" />\n'.format(entry["URL"]))
+        out.write('<enclosure type="audio/m4a" url="{}" length="{}" />\n'.format(
+            entry["URL"],
+            entry["BYTES"]
+        ))
         out.write('</item>\n')
