@@ -44,7 +44,6 @@ class TaskProject:
         new_file_name = tasks_file + ".NEW"
         git_ops.git_reset()
         git_ops.git_pull()
-        if cheap_operation is not None: cheap_operation()
         msg = "ABANDON: " + task_data[self._job_colname]
         with open(tasks_file, "r") as old_tasks:
             with open(new_file_name, "w") as new_tasks:

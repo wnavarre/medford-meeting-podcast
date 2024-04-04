@@ -41,3 +41,17 @@ def done_task_local_fp(task, old_tasks_file, new_tasks_file, job_colname):
         else:
             entry.print_entry(new_tasks_file)
 
+def abandon_task_local_fp(task, old_tasks_file, new_tasks_file, job_colname):
+    job_id = task[job_colname]
+    if job_id[0:5] != "TODO-": raise ValueError(task[job_colname])
+    reader = TSVFileReader(old_tasks_file)
+    reader.print_headings(new_tasks_file)
+    for entry in reader:
+        if entry[job_colname] == task[job_colname]:
+            task = task.update_other(entry)
+            task[job_colname] = ""
+            task.print_entry(new_tasks_file)
+            task.print_entry(sys.stdout)
+        else:
+            entry.print_entry(new_tasks_file)
+
