@@ -61,6 +61,8 @@ def process_meeting(meeting):
                              "-vn",
                              "-acodec", "copy",
                              audio_tmpfile])
+    byte_size = os.path.getsize(audio_tmpfile)
+    meeting["BYTES"] = str(byte_size)
     if result.returncode: raise AssertionError("ffmpeg")
     filelist = { audio_tmpfile : audio_tmpfile }
     print("Uploading...")
