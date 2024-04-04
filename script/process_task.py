@@ -1,4 +1,6 @@
 from internetarchive import upload
+import string
+import datetime
 
 def new_md():
     return {
@@ -10,13 +12,13 @@ def new_md():
 def md(meeting):
     out = new_md()
     out["date"] = meeting["DATE"]
-    datetime.datetime.strptime(out["DATE"], "%Y-%m-%d") # Errors out if format is bad.
+    datetime.datetime.strptime(out["date"], "%Y-%m-%d") # Errors out if format is bad.
 
 EXT_CHARS = string.ascii_lowercase + "0123456789"
 
 def identifier(md, meeting):
     slug = meeting["SLUG"].replace(" ", "-").replace("_", "-")
-    for e in slug:
+    for e in slug.lower():
         if e == "-" or e in EXT_CHARS:
             pass
         else:
@@ -40,7 +42,7 @@ def process_meeting(meeting):
     my_md = md(meeting)
     my_id = identifier(md, meeting)
     meeting["URL"] = "https://archive.org/download/{}/{}".format(my_id, audio_tmpfile)
-    result = subprocess.run(["wget", src_url, "-O", audio_tmpfile))
+    result = subprocess.run(["wget", src_url, "-O", audio_tmpfile])
     if result: raise AssertionError("wget")
     result = subprocess.run(["ffmpeg",
                              "-i", video_tmpfile,
