@@ -40,3 +40,4 @@ def done_task_local_fp(task, old_tasks_file, new_tasks_file, job_colname):
             task.print_entry(sys.stdout)
         else:
             entry.print_entry(new_tasks_file)
+

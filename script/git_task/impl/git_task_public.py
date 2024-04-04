@@ -39,6 +39,27 @@ class TaskProject:
         git_ops.git_pull()
         raise TaskRace()
     @in_git_workdir
+    def abandon_task(self, task_data):
+        tasks_file = self._tasks_filename
+        new_file_name = tasks_file + ".NEW"
+        git_ops.git_reset()
+        git_ops.git_pull()
+        if cheap_operation is not None: cheap_operation()
+        msg = "ABANDON: " + task_data[self._job_colname]
+        with open(tasks_file, "r") as old_tasks:
+            with open(new_file_name, "w") as new_tasks:
+                abandon_task_local_fp(task_data, old_tasks, new_tasks, self._job_colname)
+        mv(new_file_name, tasks_file)
+        error_st = ""
+        try:
+            git_ops.git_send(msg)
+            return
+        except git_ops.GitError as e:
+            error_st = repr(e)
+        git_ops.git_reset()
+        git_ops.git_pull()
+        raise TaskRace(error_st)
+    @in_git_workdir
     def commit_task_results(self, task_data, cheap_operation=None, *, fail_ungracefully=False):
         tasks_file = self._tasks_filename
         new_file_name = tasks_file + ".NEW"
