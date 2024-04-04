@@ -11,7 +11,7 @@ if os.path.exists("medford-meeting-podcast-DATA"):
     subprocess.run([ "git", "reset", "--hard", "origin/main" ])
 else:
     subprocess.run([ "git", "clone", "git@github.com:wnavarre/medford-meeting-podcast.git", "medford-meeting-podcast-DATA"])
-
-my_task_project = TaskProject("./medford-meeting-podcast-DATA", "tasks.dat")
+os.chdir(os.getenv("HOME"))
+my_task_project = TaskProject("./medford-meeting-podcast-DATA", "./data/meetings.dat")
 
 __all__ = [ "my_task_project" ]
