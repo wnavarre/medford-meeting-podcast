@@ -20,7 +20,4 @@ try:
 except:
     my_task.my_task_project.abandon_task(t)
     raise
-def refresh_xml():
-    all_tasks = t.all_tasks()
-    with open("./docs/meetings.rss", 'w'): rss(all_tasks, out)
 my_task.my_task_project.commit_task_results(t, cheap_operation=refresh_xml)
