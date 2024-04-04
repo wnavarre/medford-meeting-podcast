@@ -70,9 +70,10 @@ def process_meeting(meeting):
     meeting["BYTES"] = str(byte_size)
     if result.returncode: raise AssertionError("ffmpeg")
     filelist = { audio_tmpfile : audio_tmpfile }
-    print("Uploading...")
-    print("\t" + repr(my_id))
-    print("\t" + repr(filelist))
-    print("\tmetadata=" + repr(my_md))
-    upload(my_id, filelist, metadata=my_md)
+    if os.getenv("NOUPLOAD"):
+        print("Uploading...")
+        print("\t" + repr(my_id))
+        print("\t" + repr(filelist))
+        print("\tmetadata=" + repr(my_md))
+        upload(my_id, filelist, metadata=my_md)
 
