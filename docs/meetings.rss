@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:podcast="https://podcastindex.org/namespace/1.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+<channel>
+<atom:link href="https://wnavarre.github.io/medford-meetings-podcast/meetings.rss" rel="self" type="application/rss+xml" />
+<title>Medford, MA Meetings</title>
+<description>Audio meetings in Medford, MA</description>
+<link>https//medfordma.org/</link>
+<language>en-us</language>
+<itunes:category text="News" />
+<podcast:locked>no</podcast:locked>
+<itunes:explicit>true</itunes:explicit>
+</channel>
+<item>
+<title>City-Council 2024-04-02</title>
+<guid isPermaLink="false">DONE-498f27d4-2f96-4be8-a6ca-802561c39e9b</guid>
+<enclosure type="audio/m4a" url="https://archive.org/download/medford_City-Council_2024-04-02/audiofile.m4a" />
+</item>
