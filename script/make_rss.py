@@ -13,7 +13,7 @@ def rss(entries, out):
     out.write('<itunes:explicit>true</itunes:explicit>\n')
     out.write('</channel>\n')
     entries = list(entries)
-    entries.sort(key=lambda x: x["DATE"])
+    entries.sort(key=lambda x: x["DATE"], reverse=True)
     for entry in entries:
         if not entry.get("URL"): continue
         job = entry["JOB"]
