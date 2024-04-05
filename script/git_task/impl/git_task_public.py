@@ -21,6 +21,8 @@ class TaskProject:
         with open(self._tasks_filename, "r") as old_tasks:
             return list_tasks_fp(old_tasks)
     @in_git_workdir
+    def unsafe_commit(self, m): git_ops.git_send(m)
+    @in_git_workdir
     def grab_task(self, *, fail_ungracefully=False, startup_function=None):
         tasks_file = self._tasks_filename
         new_file_name = tasks_file + ".NEW"
