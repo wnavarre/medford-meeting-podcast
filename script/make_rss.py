@@ -1,3 +1,5 @@
+from date_format import *
+
 def rss(entries, out):
     out.write('<?xml version="1.0" encoding="UTF-8"?>\n')
     out.write('<rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:podcast="https://podcastindex.org/namespace/1.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">\n')
@@ -17,6 +19,7 @@ def rss(entries, out):
     for entry in entries:
         if not entry.get("URL"): continue
         job = entry["JOB"]
+        upload_time = read_iso_datetime(entry["TIMESTAMP"])
         if job[0:4] != "DONE": continue
         out.write('<item>\n')
         out.write('<title>{} {}</title>\n'.format(entry["SLUG"], entry["DATE"]))
@@ -25,4 +28,5 @@ def rss(entries, out):
             entry["URL"],
             entry["BYTES"]
         ))
+        out.write('<pubDate>{}</pubdate>'.format(write_rss_datetime(upload_time)))
         out.write('</item>\n')

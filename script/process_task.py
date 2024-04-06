@@ -1,4 +1,6 @@
 from internetarchive import upload
+import datetime
+import date_format
 import subprocess
 import string
 import datetime
@@ -68,6 +70,7 @@ def process_meeting(meeting):
                              audio_tmpfile])
     byte_size = os.path.getsize(audio_tmpfile)
     meeting["BYTES"] = str(byte_size)
+    meeting["TIMESTAMP"] = date_format.write_iso_format(datetime.datetime.now())
     if result.returncode: raise AssertionError("ffmpeg")
     filelist = { audio_tmpfile : audio_tmpfile }
     if not os.getenv("NOUPLOAD"):
