@@ -41,6 +41,7 @@ def extension(st):
     return ext
 
 def delete_if_exists(path):
+    if os.getenv("NODELETE"): return
     try:
         os.remove(path)
     except OSError:
