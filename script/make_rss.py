@@ -28,5 +28,5 @@ def rss(entries, out):
             entry["URL"],
             entry["BYTES"]
         ))
-        out.write('<pubDate>{}</pubdate>'.format(write_rss_datetime(upload_time)))
+        out.write('<pubDate>{}</pubDate>'.format(write_rss_datetime(upload_time)))
         out.write('</item>\n')
