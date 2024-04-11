@@ -4,7 +4,7 @@ def rss(entries, out):
     out.write('<?xml version="1.0" encoding="UTF-8"?>\n')
     out.write('<rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:podcast="https://podcastindex.org/namespace/1.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content">\n')
     out.write('<channel>\n')
-    out.write('<atom:link href="https://wnavarre.github.io/medford-meetings-podcast/meetings.rss" rel="self" type="application/rss+xml" />\n')
+    out.write('<atom:link href="https://wnavarre.github.io/medford-meeting-podcast/meetings.rss" rel="self" type="application/rss+xml" />\n')
     out.write('<title>Medford, MA Meetings</title>\n')
     out.write('<description>Audio meetings in Medford, MA</description>\n')
     out.write('<link>https://medfordma.org/</link>\n')
@@ -12,6 +12,8 @@ def rss(entries, out):
     out.write('<itunes:category text="News" />\n')
     out.write('<podcast:locked>no</podcast:locked>\n')
     out.write('<itunes:explicit>true</itunes:explicit>\n')
+    out.write('<itunes:image href="https://wnavarre.github.io/medford-meeting-podcast/art/icon_full.jpg" />\n')
+
     entries = list(entries)
     entries.sort(key=lambda x: x["DATE"], reverse=True)
     for entry in entries:
