@@ -12,6 +12,8 @@ def rss(entries, out):
     out.write('<itunes:category text="News" />\n')
     out.write('<podcast:locked>no</podcast:locked>\n')
     out.write('<itunes:explicit>true</itunes:explicit>\n')
+    out.write('<itunes:image href="https://wnavarre.github.io/medford-meeting-podcast/art/icon_full.jpg" />\n')
+
     entries = list(entries)
     entries.sort(key=lambda x: x["DATE"], reverse=True)
     for entry in entries:
