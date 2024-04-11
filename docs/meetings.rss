@@ -4,7 +4,7 @@
 <atom:link href="https://wnavarre.github.io/medford-meetings-podcast/meetings.rss" rel="self" type="application/rss+xml" />
 <title>Medford, MA Meetings</title>
 <description>Audio meetings in Medford, MA</description>
-<link>https//medfordma.org/</link>
+<link>https://medfordma.org/</link>
 <language>en-us</language>
 <itunes:category text="News" />
 <podcast:locked>no</podcast:locked>
