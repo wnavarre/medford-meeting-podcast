@@ -72,14 +72,14 @@ class TaskProject:
         new_file_name = tasks_file + ".NEW"
         git_ops.git_reset()
         git_ops.git_pull()
-        if cheap_operation is not None:
-            cheap_operation()
-        else:
-            print("No 'cheap_operation' to execute, moving on...")
         with open(tasks_file, "r") as old_tasks:
             with open(new_file_name, "w") as new_tasks:
                 done_task_local_fp(task_data, old_tasks, new_tasks, self._job_colname)
         mv(new_file_name, tasks_file)
+        if cheap_operation is not None:
+            cheap_operation()
+        else:
+            print("No 'cheap_operation' to execute, moving on...")
         error_st = ""
         try:
             git_ops.git_send(task_data[self._job_colname])
