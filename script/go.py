@@ -7,6 +7,7 @@ import os
 
 my_tasks = my_task.my_task_project
 def refresh_xml_impl():
+    print("REFRESHING XML....")
     all_tasks = my_tasks.all_tasks()
     with open("./docs/meetings.rss", 'w') as out: rss(all_tasks, out)
 refresh_xml = lambda: my_tasks.visit_git_workdir(refresh_xml_impl)
