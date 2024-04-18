@@ -11,6 +11,11 @@
 <itunes:explicit>true</itunes:explicit>
 <itunes:image href="https://wnavarre.github.io/medford-meeting-podcast/art/icon_full.jpg" />
 <item>
+<title>City-Council-Meeting 2024-04-16</title>
+<guid isPermaLink="false">DONE-0bd625b0-0e75-4101-8a34-41d7998032c0</guid>
+<enclosure type="audio/m4a" url="https://archive.org/download/medford_City-Council-Meeting_2024-04-16/audiofile.m4a" length="185827022" />
+<pubDate>Thu, 18 Apr 2024 18:01:13 +0000</pubDate></item>
+<item>
 <title>City-Council-Zoning 2024-04-10</title>
 <guid isPermaLink="false">DONE-815a0dcb-7e12-4960-a505-7e328f2c3e3a</guid>
 <enclosure type="audio/m4a" url="https://archive.org/download/medford_City-Council-Zoning_2024-04-10/audiofile.m4a" length="66425811" />
